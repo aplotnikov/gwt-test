@@ -2,6 +2,7 @@
 <module rename-to='Module'>
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <inherits name="com.google.gwt.inject.Inject"/>
 
     <entry-point class='com.codenvy.client.Module'/>
 

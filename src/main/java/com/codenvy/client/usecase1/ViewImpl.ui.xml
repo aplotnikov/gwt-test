@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:FlowPanel>
+        <g:Label text="Some test:"/>
+        <g:TextBox ui:field="textBox"/>
+        <g:Button ui:field="okBtn"/>
+        <g:Button ui:field="cancelBtn"/>
+    </g:FlowPanel>
+</ui:UiBinder>
