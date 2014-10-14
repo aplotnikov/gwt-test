@@ -9,6 +9,7 @@
     <artifactId>test</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>Test project</name>
 
     <properties>
         <gwtVersion>2.6.1</gwtVersion>
@@ -29,16 +30,11 @@
             <version>${gwtVersion}</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
 
         <resources>
             <resource>
@@ -65,7 +61,6 @@
                 <configuration>
                     <runTarget>Module.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
-                    <i18nMessagesBundle>com.codenvy.client.Messages</i18nMessagesBundle>
                 </configuration>
             </plugin>
 

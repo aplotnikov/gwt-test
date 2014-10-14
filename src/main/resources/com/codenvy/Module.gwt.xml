@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module>
+<module rename-to='Module'>
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
 
@@ -10,5 +10,4 @@
     <set-property name='compiler.useSourceMaps' value='true'/>
 
     <source path='client'/>
-
 </module>
