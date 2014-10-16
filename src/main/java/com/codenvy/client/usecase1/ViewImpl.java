@@ -17,6 +17,7 @@
  */
 package com.codenvy.client.usecase1;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -27,16 +28,16 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
 /**
  * @author Andrey Plotnikov
  */
 public class ViewImpl extends Composite implements View {
 
-    @Singleton
     interface ViewImplUiBinder extends UiBinder<Widget, ViewImpl> {
     }
+
+    private static final ViewImplUiBinder ourUiBinder = GWT.create(ViewImplUiBinder.class);
 
     @UiField
     TextBox textBox;
@@ -48,7 +49,7 @@ public class ViewImpl extends Composite implements View {
     private ActionDelegate delegate;
 
     @Inject
-    public ViewImpl(ViewImplUiBinder ourUiBinder) {
+    public ViewImpl() {
         initWidget(ourUiBinder.createAndBindUi(this));
     }
 
