@@ -1,4 +1,4 @@
-package com.codenvy.client.usecase1;
+package com.codenvy.client.simple;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import static com.codenvy.client.usecase1.View.ActionDelegate;
+import static com.codenvy.client.simple.View.ActionDelegate;
 import static org.mockito.Mockito.verify;
 
 @RunWith(GwtMockitoTestRunner.class)

@@ -13,24 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codenvy.client.usecase2;
-
-import com.google.gwt.user.client.ui.IsWidget;
-import com.google.gwt.user.client.ui.SimpleLayoutPanel;
+package com.codenvy.client.jsutils;
 
 /**
  * @author Andrey Plotnikov
  */
-public class Presenter {
+public class Utils {
 
-    private final IsWidget view;
-
-    public Presenter(IsWidget view) {
-        this.view = view;
-    }
-
-    public void go(SimpleLayoutPanel container) {
-        container.setWidget(view);
-    }
+    public static native String getHost() /*-{
+        return $wnd.location.host;
+    }-*/;
 
 }

@@ -1,4 +1,4 @@
-package com.codenvy.client.usecase2;
+package com.codenvy.client.patch;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimpleLayoutPanel;
@@ -12,17 +12,16 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-// starting is 6s + executing is 2s
 @GwtModule("com.codenvy.Module")
-public class PresenterTest extends GwtTestWithMocks {
+public class Presenter3Test extends GwtTestWithMocks {
 
     @Mock
-    private IsWidget  view;
-    private Presenter presenter;
+    private IsWidget   view;
+    private Presenter3 presenter;
 
     @Before
     public void setUp() throws Exception {
-        presenter = new Presenter(view);
+        presenter = new Presenter3(view);
     }
 
     @Test

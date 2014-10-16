@@ -7,4 +7,5 @@
         <g:Button ui:field="okBtn"/>
         <g:Button ui:field="cancelBtn"/>
     </g:FlowPanel>
+
 </ui:UiBinder>

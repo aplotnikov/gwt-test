@@ -13,27 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codenvy.client.usecase1;
+package com.codenvy.client.patch;
 
+import com.codenvy.client.jsutils.Utils;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
 
 /**
  * @author Andrey Plotnikov
  */
-@ImplementedBy(ViewImpl.class)
-public interface View extends IsWidget {
+public class Presenter3 {
 
-    void setText(String text);
+    private final IsWidget view;
 
-    void setDelegate(ActionDelegate delegate);
+    @Inject
+    public Presenter3(IsWidget view) {
+        this.view = view;
+    }
 
-    interface ActionDelegate {
-        void onOkButtonClicked();
+    public void go(AcceptsOneWidget container) {
+        String host = Utils.getHost();
 
-        void onCancelButtonClicked();
-
-        void onTextChanged();
+        container.setWidget(view);
     }
 
 }

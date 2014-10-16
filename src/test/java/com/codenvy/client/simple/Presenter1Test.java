@@ -1,4 +1,4 @@
-package com.codenvy.client.usecase1;
+package com.codenvy.client.simple;
 
 import com.codenvy.client.LocaleConstant;
 import com.codenvy.client.Service;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PresenterTest {
+public class Presenter1Test {
 
     private static final String TEXT = "some text";
 
@@ -36,7 +36,7 @@ public class PresenterTest {
     @Mock
     private Service        service;
     @InjectMocks
-    private Presenter      presenter;
+    private Presenter1     presenter;
 
     @Test
     public void delegateShouldBeSet() throws Exception {

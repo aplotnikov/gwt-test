@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codenvy.client.usecase1;
+package com.codenvy.client.simple;
 
 import com.codenvy.client.LocaleConstant;
 import com.codenvy.client.Service;
@@ -27,14 +27,14 @@ import javax.inject.Inject;
  *
  * @author Andrey Plotnikov
  */
-public class Presenter implements View.ActionDelegate {
+public class Presenter1 implements View.ActionDelegate {
 
     private final View           view;
     private final Service        service;
     private final LocaleConstant localeConstant;
 
     @Inject
-    public Presenter(View view, LocaleConstant localeConstant, Service service) {
+    public Presenter1(View view, LocaleConstant localeConstant, Service service) {
         this.view = view;
         this.service = service;
         this.view.setDelegate(this);
