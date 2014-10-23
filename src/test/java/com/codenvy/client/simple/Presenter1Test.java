@@ -118,7 +118,6 @@ public class Presenter1Test {
 
     @Test
     public void textShouldBeChangedWhenAsyncRequestCallbackIsFailed() throws Exception {
-        Throwable throwable = mock(Throwable.class);
         when(localeConstant.failTitle()).thenReturn(TEXT);
 
         presenter.onInfoButtonClicked();
@@ -129,7 +128,7 @@ public class Presenter1Test {
 
         //noinspection NonJREEmulationClassesInClientCode
         Method onFailure = callback.getClass().getDeclaredMethod("onFailure", Throwable.class);
-        onFailure.invoke(callback, throwable);
+        onFailure.invoke(callback, mock(Throwable.class));
 
         verify(localeConstant).failTitle();
         verify(view).setText(TEXT);
