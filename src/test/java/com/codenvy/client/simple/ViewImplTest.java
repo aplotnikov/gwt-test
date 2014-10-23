@@ -45,6 +45,13 @@ public class ViewImplTest {
     }
 
     @Test
+    public void delegateActionShouldBeExecutedWhenUserIsClickingOnInfoButton() throws Exception {
+        view.onInfoButtonClicked(clickEvent);
+
+        verify(delegate).onInfoButtonClicked();
+    }
+
+    @Test
     public void delegateActionShouldBeExecutedWhenUserIsChangingTextBox() throws Exception {
         view.onTextChanged(keyUpEvent);
 

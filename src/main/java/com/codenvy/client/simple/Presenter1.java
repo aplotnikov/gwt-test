@@ -17,6 +17,7 @@ package com.codenvy.client.simple;
 
 import com.codenvy.client.LocaleConstant;
 import com.codenvy.client.Service;
+import com.codenvy.ide.rest.AsyncRequestCallback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -50,6 +51,21 @@ public class Presenter1 implements View.ActionDelegate {
     @Override
     public void onCancelButtonClicked() {
         view.setText(localeConstant.cancelTitle());
+    }
+
+    @Override
+    public void onInfoButtonClicked() {
+        service.doSomething(new AsyncRequestCallback<String>() {
+            @Override
+            protected void onSuccess(String result) {
+                view.setText(result);
+            }
+
+            @Override
+            protected void onFailure(Throwable exception) {
+                view.setText(localeConstant.failTitle());
+            }
+        });
     }
 
     @Override

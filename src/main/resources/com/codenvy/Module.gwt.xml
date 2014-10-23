@@ -3,6 +3,7 @@
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.user.theme.standard.Standard'/>
     <inherits name="com.google.gwt.inject.Inject"/>
+    <inherits name="com.codenvy.ide.Commons"/>
 
     <entry-point class='com.codenvy.client.Module'/>
 

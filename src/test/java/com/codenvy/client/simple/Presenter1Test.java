@@ -2,8 +2,10 @@ package com.codenvy.client.simple;
 
 import com.codenvy.client.LocaleConstant;
 import com.codenvy.client.Service;
+import com.codenvy.ide.rest.AsyncRequestCallback;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.googlecode.gwt.test.utils.GwtReflectionUtils;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,11 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.Method;
+
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -27,7 +34,9 @@ public class Presenter1Test {
     private static final String TEXT = "some text";
 
     @Captor
-    private ArgumentCaptor<AsyncCallback<String>> callbackCaptor;
+    private ArgumentCaptor<AsyncCallback<String>>        callbackCaptor;
+    @Captor
+    private ArgumentCaptor<AsyncRequestCallback<String>> asyncRequestCallbackCaptor;
 
     @Mock
     private View           view;
@@ -103,6 +112,57 @@ public class Presenter1Test {
 
         AsyncCallback<String> callback = callbackCaptor.getValue();
         callback.onSuccess(TEXT);
+
+        verify(view).setText(TEXT);
+    }
+
+    @Test
+    public void textShouldBeChangedWhenAsyncRequestCallbackIsFailed() throws Exception {
+        Throwable throwable = mock(Throwable.class);
+        when(localeConstant.failTitle()).thenReturn(TEXT);
+
+        presenter.onInfoButtonClicked();
+
+        verify(service).doSomething(asyncRequestCallbackCaptor.capture());
+
+        AsyncRequestCallback<String> callback = asyncRequestCallbackCaptor.getValue();
+
+        //noinspection NonJREEmulationClassesInClientCode
+        Method onFailure = callback.getClass().getDeclaredMethod("onFailure", Throwable.class);
+        onFailure.invoke(callback, throwable);
+
+        verify(localeConstant).failTitle();
+        verify(view).setText(TEXT);
+    }
+
+    @Test
+    public void textShouldBeChangedWhenAsyncRequestCallbackIsSuccess() throws Exception {
+        presenter.onInfoButtonClicked();
+
+        verify(service).doSomething(asyncRequestCallbackCaptor.capture());
+
+        AsyncRequestCallback<String> callback = asyncRequestCallbackCaptor.getValue();
+
+        //noinspection NonJREEmulationClassesInClientCode
+        Method onSuccess = GwtReflectionUtils.getMethod(callback.getClass(), "onSuccess");
+        onSuccess.invoke(callback, TEXT);
+
+        verify(view).setText(TEXT);
+    }
+
+    @Test
+    public void textShouldBeChangedWhenAsyncRequestCallbackIsSuccess2() throws Throwable {
+        presenter.onInfoButtonClicked();
+
+        verify(service).doSomething(asyncRequestCallbackCaptor.capture());
+
+        AsyncRequestCallback<String> callback = asyncRequestCallbackCaptor.getValue();
+
+        //noinspection NonJREEmulationClassesInClientCode
+        MethodType methodType = MethodType.methodType(void.class, String.class);
+        //noinspection NonJREEmulationClassesInClientCode
+        MethodHandle methodHandle = MethodHandles.lookup().findVirtual(callback.getClass(), "onSuccess", methodType);
+        methodHandle.invoke(callback, TEXT);
 
         verify(view).setText(TEXT);
     }

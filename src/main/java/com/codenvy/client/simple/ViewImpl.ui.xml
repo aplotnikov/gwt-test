@@ -6,6 +6,7 @@
         <g:TextBox ui:field="textBox"/>
         <g:Button ui:field="okBtn"/>
         <g:Button ui:field="cancelBtn"/>
+        <g:Button ui:field="infoBtn"/>
     </g:FlowPanel>
 
 </ui:UiBinder>

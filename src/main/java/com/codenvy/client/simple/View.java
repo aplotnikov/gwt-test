@@ -33,6 +33,8 @@ public interface View extends IsWidget {
 
         void onCancelButtonClicked();
 
+        void onInfoButtonClicked();
+
         void onTextChanged();
     }
 
