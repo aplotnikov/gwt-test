@@ -73,6 +73,11 @@ public class ViewImpl extends Composite implements View {
         delegate.onInfoButtonClicked();
     }
 
+    @UiHandler("applyBtn")
+    public void onApplyButtonClicked(@SuppressWarnings("UnusedParameters") ClickEvent event) {
+        delegate.onApplyButtonClicked();
+    }
+
     @UiHandler("textBox")
     public void onTextChanged(@SuppressWarnings("UnusedParameters") KeyUpEvent event) {
         delegate.onTextChanged();

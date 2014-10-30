@@ -3,6 +3,7 @@ package com.codenvy.client.simple;
 import com.codenvy.client.LocaleConstant;
 import com.codenvy.client.Service;
 import com.codenvy.ide.rest.AsyncRequestCallback;
+import com.google.gwt.http.client.RequestException;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.gwt.test.utils.GwtReflectionUtils;
@@ -24,6 +25,7 @@ import java.lang.invoke.MethodType;
 import java.lang.reflect.Method;
 
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -113,6 +115,18 @@ public class Presenter1Test {
         AsyncCallback<String> callback = callbackCaptor.getValue();
         callback.onSuccess(TEXT);
 
+        verify(view).setText(TEXT);
+    }
+
+    @Test
+    public void exceptionShouldBeThrown() throws Exception {
+        when(localeConstant.failTitle()).thenReturn(TEXT);
+        doThrow(RequestException.class).when(service).doSomething();
+
+        presenter.onApplyButtonClicked();
+
+        verify(service).doSomething();
+        verify(localeConstant).failTitle();
         verify(view).setText(TEXT);
     }
 

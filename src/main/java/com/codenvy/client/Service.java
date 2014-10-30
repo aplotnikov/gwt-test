@@ -16,6 +16,7 @@
 package com.codenvy.client;
 
 import com.codenvy.ide.rest.AsyncRequestCallback;
+import com.google.gwt.http.client.RequestException;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -37,6 +38,10 @@ public class Service {
     }
 
     public void doSomething(AsyncRequestCallback<String> callback) {
+        // do nothing
+    }
+
+    public void doSomething() throws RequestException {
         // do nothing
     }
 
